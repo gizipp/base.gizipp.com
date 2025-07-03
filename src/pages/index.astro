@@ -13,37 +13,160 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧭 Halo, GIZIPP!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<div class="hero-content">
+					<h1>gizi pemandu perjalanan</h1>
+					<p class="hero-description">
+						Jelajahi gizi terbaik pemandu perjalananmu untuk memahami diri dan meraih hidup yang bermakna.
+					</p>
+					<!-- Label kecil di atas form dengan arrow bawah -->
+					<div class="form-label-small">
+						Panduan hidupmu selanjutnya <span class="arrow-side">▼</span>
+					</div>
+					<form class="hero-form" autocomplete="off" onsubmit="return false;">
+						<label for="panduan" class="sr-only">Panduan hidupmu selanjutnya</label>
+						<input id="panduan" name="panduan" type="text" placeholder="mencari passion saya" class="hero-input" />
+						<button type="submit" class="btn-primary">Mulai</button>
+					</form>
+					<div class="explore-more">
+						<p>Atau <a href="/blog">jelajahi 50+ gizi pemandu perjalananmu</a> →</p>
+					</div>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<script>
+const placeholders = [
+  'mencari passion saya',
+  'mencari peta hidup saya',
+  'mencari gaya pembelajaran saya'
+];
+let idx = 0;
+setInterval(() => {
+  const input = document.getElementById('panduan');
+  if (input) {
+    idx = (idx + 1) % placeholders.length;
+    input.setAttribute('placeholder', placeholders[idx]);
+  }
+}, 2200);
+</script>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 4rem 1rem 2rem 1rem;
+		background: white;
+		color: rgb(var(--black));
+		margin: -3em -1em 3em -1em;
+	}
+	.hero-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	.hero h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+	.hero-description {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		opacity: 0.9;
+		max-width: 600px;
+		margin: 0 auto 2.5rem auto;
+	}
+	.hero-form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	.hero-input {
+		padding: 1rem 1.5rem;
+		font-size: 1.25rem;
+		border-radius: 8px;
+		border: none;
+		outline: none;
+		width: 320px;
+		max-width: 100%;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	}
+	.btn-primary {
+		padding: 1rem 2.5rem;
+		font-size: 1.25rem;
+		border-radius: 8px;
+		background: var(--accent-dark);
+		color: #fff;
+		font-weight: 800;
+		border: none;
+		cursor: pointer;
+		transition: background 0.2s, box-shadow 0.2s;
+		box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+		outline: none;
+		letter-spacing: 0.01em;
+		text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+	}
+	.btn-primary:focus {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+	.btn-primary:hover {
+		background: var(--accent);
+	}
+	.explore-more {
+		text-align: center;
+		padding: 1.5rem 0 0 0;
+	}
+	.explore-more a {
+		color: var(--accent);
+		font-weight: 600;
+		text-decoration: underline;
+		transition: color 0.2s;
+	}
+	.explore-more a:hover {
+		color: var(--accent-dark);
+	}
+	.form-label-small {
+  font-size: 0.85rem;
+  color: rgb(var(--gray));
+  margin-bottom: 0.5rem;
+  text-align: center;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+.arrow-side {
+  font-size: 1.1rem;
+  color: rgb(var(--gray));
+  line-height: 1;
+}
+	@media (max-width: 600px) {
+		.hero h1 {
+			font-size: 2.1rem;
+		}
+		.hero-description {
+			font-size: 1rem;
+		}
+		.hero-form {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+		.hero-input, .btn-primary {
+			width: 100%;
+			font-size: 1.1rem;
+			padding: 0.9rem 1rem;
+		}
+	}
+</style>

@@ -4,6 +4,11 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+:root {
+  --accent: #222;
+  --accent-dark: #000;
+}
+
 @font-face {
 	font-family: 'Plus Jakarta Sans';
 	src: url('/fonts/plus-jakarta-sans-v11-latin-regular.woff2') format('woff2');
