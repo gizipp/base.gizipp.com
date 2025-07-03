@@ -23,22 +23,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<div class="form-label-small">
 						Panduan hidupmu selanjutnya <span class="arrow-side">▼</span>
 					</div>
-					<form class="hero-form" autocomplete="off" onsubmit="return false;">
+					<form class="hero-form" autocomplete="off">
 						<label for="panduan" class="sr-only">Panduan hidupmu selanjutnya</label>
 						<input id="panduan" name="panduan" type="text" placeholder="mencari passion saya" class="hero-input" />
 						<button type="submit" class="btn-primary">Mulai</button>
 					</form>
 					<div class="explore-more">
-						<p>Atau <a href="/blog">jelajahi 50+ gizi pemandu perjalananmu</a> →</p>
+						<p>Atau <a href="/discover">jelajahi 50+ gizi pemandu perjalananmu</a> →</p>
 					</div>
 				</div>
 			</section>
 		</main>
 		<Footer />
-	</body>
-</html>
-
-<script>
+		<script>
 const placeholders = [
   'mencari passion saya',
   'mencari peta hidup saya',
@@ -52,7 +49,22 @@ setInterval(() => {
     input.setAttribute('placeholder', placeholders[idx]);
   }
 }, 2200);
+
+window.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.hero-form');
+  const input = document.getElementById('panduan');
+  form?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!input) return;
+    const inputEl = input as HTMLInputElement;
+    let value = inputEl.value.trim();
+    if (!value) value = inputEl.placeholder || '';
+    window.location.href = `/discover?query=${encodeURIComponent(value)}`;
+  });
+});
 </script>
+	</body>
+</html>
 
 <style>
 	.hero {
@@ -120,7 +132,12 @@ setInterval(() => {
 	}
 	.explore-more {
 		text-align: center;
-		padding: 1.5rem 0 0 0;
+		padding: 0;
+		margin: 0;
+	}
+	.explore-more p {
+		margin: 0;
+		padding: 0;
 	}
 	.explore-more a {
 		color: var(--accent);
